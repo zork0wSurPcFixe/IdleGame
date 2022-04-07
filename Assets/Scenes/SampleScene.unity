@@ -443,9 +443,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 628781616}
-        m_TargetAssemblyTypeName: GameModel, Assembly-CSharp
-        m_MethodName: Hit
+      - m_Target: {fileID: 1470230714}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: ClicOnButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

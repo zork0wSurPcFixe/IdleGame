@@ -9,6 +9,11 @@ public class GameController : MonoBehaviour
     private GameModel _gameModel;
 
     [SerializeField] private Button _upgradeWaterButton;
+    [SerializeField] private Button _upgradeCanButton;
+    [SerializeField] private Button _upgradeBandageButton;
+    [SerializeField] private Button _upgradeGunButton;
+    [SerializeField] private Button _upgradeShieldButton;
+
     [SerializeField] private Button _testMoneyAdd;
 
     //Magasins
@@ -17,7 +22,10 @@ public class GameController : MonoBehaviour
 
     //Shop
     public FloatView waterView;
-    public Text textShop2;
+    public FloatView canView;
+    public FloatView bandageView;
+    public FloatView gunView;
+    public FloatView shieldView;
 
     //Amount
     public Text TextAmount1;
@@ -33,7 +41,17 @@ public class GameController : MonoBehaviour
         _gameModel = new GameModel();
         _gameModel.GetMoney().Subscribe(moneyView);
         _gameModel.GetWater().Subscribe(waterView);
+        _gameModel.GetCan().Subscribe(canView);
+        _gameModel.GetBandages().Subscribe(bandageView);
+        _gameModel.GetGun().Subscribe(gunView);
+        _gameModel.GetShield().Subscribe(shieldView);
+
         _upgradeWaterButton.onClick.AddListener(UpgradeWater);
+        _upgradeCanButton.onClick.AddListener(UpgradeCan);
+        _upgradeBandageButton.onClick.AddListener(UpgradeBandage);
+        _upgradeGunButton.onClick.AddListener(UpgradeGun);
+        _upgradeShieldButton.onClick.AddListener(UpgradeShield);
+
         _testMoneyAdd.onClick.AddListener(TestAddMoney);
        
     }
@@ -48,6 +66,26 @@ public class GameController : MonoBehaviour
         _gameModel.UpgradeWater();
     }
 
+    private void UpgradeCan()
+    {
+        _gameModel.UpgradeCan();
+    }
+
+    private void UpgradeBandage()
+    {
+        _gameModel.UpgradeBandage();
+    }
+
+    private void UpgradeGun()
+    {
+        _gameModel.UpgradeGun();
+    }
+
+    private void UpgradeShield()
+    {
+        _gameModel.UpgradeShield();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -57,7 +95,6 @@ public class GameController : MonoBehaviour
         
 
         //Buy
-        textShop2.text = "Tier 1: " + _gameModel.shopPrize2 + " $ ";
 
         TextAmount1.text = "Tier 1: " + _gameModel.AmountWater + " mps: " + _gameModel.profit1 + "/s";
         TextAmount2.text = "Tier 2: " + _gameModel.Amount2 + " mps: " + _gameModel.profit2 + "/s";

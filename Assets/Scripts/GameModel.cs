@@ -29,6 +29,10 @@ public class GameModel
 
     //Amount
     public int AmountWater;
+    public int AmountCan;
+    public int AmountBandage;
+    public int AmountGun;
+    public int AmountShield;
     public int profit1;
 
     
@@ -44,6 +48,26 @@ public class GameModel
         return waterPrice;
     }
 
+    internal FloatObservable GetCan()
+    {
+        return canPrice;
+    }
+
+    internal FloatObservable GetBandages()
+    {
+        return bandagePrice;
+    }
+
+    internal FloatObservable GetGun()
+    {
+        return gunPrice;
+    }
+
+    internal FloatObservable GetShield()
+    {
+        return shieldPrice;
+    }
+
     public GameModel()
     {
         rnd = new System.Random();
@@ -54,6 +78,10 @@ public class GameModel
         x = 0f;
         thresholdWinX2 = 0.2f;
         waterPrice = new FloatObservable(25);
+        canPrice = new FloatObservable(50);
+        bandagePrice = new FloatObservable(250);
+        gunPrice = new FloatObservable(3000);
+        shieldPrice = new FloatObservable(12500);
     }
 
     internal FloatObservable GetMoney()
@@ -66,7 +94,43 @@ public class GameModel
         if (currentMoney.GetValue() >= shopPrize1)
         {
             AmountWater++;
-            waterPrice.Add(0.2f * waterPrice.GetValue());
+            waterPrice.Add(0.15f * waterPrice.GetValue());
+        }
+    }
+
+    internal void UpgradeCan()
+    {
+        if (currentMoney.GetValue() >= shopPrize1)
+        {
+            AmountCan++;
+            canPrice.Add(0.26f * canPrice.GetValue());
+        }
+    }
+
+    internal void UpgradeBandage()
+    {
+        if (currentMoney.GetValue() >= shopPrize1)
+        {
+            AmountBandage++;
+            bandagePrice.Add(0.35f * bandagePrice.GetValue());
+        }
+    }
+
+    internal void UpgradeGun()
+    {
+        if (currentMoney.GetValue() >= shopPrize1)
+        {
+            AmountGun++;
+            gunPrice.Add(0.45f * gunPrice.GetValue());
+        }
+    }
+
+    internal void UpgradeShield()
+    {
+        if (currentMoney.GetValue() >= shopPrize1)
+        {
+            AmountShield++;
+            shieldPrice.Add(0.6f * shieldPrice.GetValue());
         }
     }
 
